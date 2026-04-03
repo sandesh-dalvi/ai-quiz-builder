@@ -5,10 +5,63 @@
 
 generator client {
   provider = "prisma-client"
-  output   = "../src/generated/prisma"
+  output   = "../generated/prisma"
 }
 
 datasource db {
   provider = "postgresql"
 }
 
+
+enum Difficulty {
+  EASY
+  MEDIUM
+  HARD
+}
+
+model Quiz {
+  id String @id @default(cuid())
+  title String
+  topic String
+  description String?
+  difficulty Difficulty @default(MEDIUM)
+  userId String
+  questions Question[]
+  attempts Attempt[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+}
+
+
+model Question {
+id String @id @default(cuid())
+quizId String
+quiz Quiz @relation(fields:[quizId], references: [id],onDelete: Cascade)
+text String
+options Json
+correctOption String
+explanation String?
+order Int
+createdAt DateTime @default(now())
+
+
+@@index([quizId])
+}
+
+model Attempt {
+  id String @id @default(cuid())
+  quizId String
+  quiz Quiz @relation(fields:[quizId], references: [id],onDelete: Cascade)
+  userId String
+  answers Json
+  score Int
+  Total Int
+  createdAt DateTime @default(now())
+ 
+
+  @@index([userId])
+  @@index([quizId])
+
+}
