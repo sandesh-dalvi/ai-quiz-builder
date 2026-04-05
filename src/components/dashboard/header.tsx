@@ -1,20 +1,32 @@
+"use client";
+
 import { UserButton } from "@clerk/nextjs";
-import { currentUser } from "@clerk/nextjs/server";
+import { Menu } from "lucide-react";
 
-const Header = async () => {
-  const user = await currentUser();
-
+export function Header({
+  firstName,
+  onMenuClick,
+}: {
+  firstName?: string;
+  onMenuClick?: () => void;
+}) {
   return (
-    <header className=" h-16 bg-white border-b border-gray-200 flex items-center justify-between px-6">
-      <div className=" text-sm text-muted-foreground">
-        Welcome back,{" "}
-        <span className=" font-medium text-foreground">
-          {user?.firstName} {user?.lastName}
-        </span>
+    <header className="h-16 bg-white border-b border-zinc-200 flex items-center justify-between px-4 md:px-6 shrink-0">
+      <div className="flex items-center gap-3">
+        <button
+          onClick={onMenuClick}
+          className="md:hidden p-2 rounded-lg text-zinc-500 hover:text-zinc-700 hover:bg-zinc-100"
+        >
+          <Menu className="w-5 h-5" />
+        </button>
+        {firstName && (
+          <p className="text-sm text-zinc-500 hidden sm:block">
+            Welcome back,{" "}
+            <span className="font-medium text-zinc-900">{firstName}</span> 👋
+          </p>
+        )}
       </div>
       <UserButton />
     </header>
   );
-};
-
-export default Header;
+}

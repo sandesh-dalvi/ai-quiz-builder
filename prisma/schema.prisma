@@ -57,7 +57,7 @@ model Attempt {
   userId String
   answers Json
   score Int
-  Total Int
+  total Int
   createdAt DateTime @default(now())
  
 

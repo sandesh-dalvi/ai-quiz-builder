@@ -132,7 +132,7 @@ export default async function Home() {
 
             <div className="flex gap-6">
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/sandesh-dalvi-35835119b/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors font-medium"
@@ -140,7 +140,7 @@ export default async function Home() {
                 LinkedIn
               </a>
               <a
-                href="https://github.com"
+                href="https://github.com/sandesh-dalvi"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors font-medium"
